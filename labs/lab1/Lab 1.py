@@ -1,5 +1,5 @@
 """
-Name:Tripp_Modzelewski
+Name:Tripp Modzelewski
 lab1.py
 
 Problem: This function calculates the area of a rectangle
