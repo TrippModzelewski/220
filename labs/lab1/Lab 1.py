@@ -45,3 +45,11 @@ def kilometers_to_miles():
     kilometers = eval(input("How many kilometers?: "))
     miles = 1.61 * kilometers
     print("miles =", miles)
+
+
+calc_area()
+calc_rec_area()
+calc_volume()
+shooting_percentage()
+coffee()
+kilometers_to_miles()
