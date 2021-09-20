@@ -1,9 +1,16 @@
 """
-Name: <your name goes here – first and last>
-<ProgramName>.py
+Name: Tripp Modzelewski
+lab4.py
+
+
+Problem: This Program uses Graphics and Accumulators
+
+Certification of Authenticity:
+I certify that this assignment is entirely my own work
 """
 
 from graphics import *
+import math
 
 
 def squares():
@@ -30,25 +37,28 @@ def squares():
 
     # create a space to instruct user
     inst_pt = Point(width / 2, height - 10)
-    instructions = Text(inst_pt, "Click to move circle")
+    instructions = Text(inst_pt, "Click to move square")
     instructions.draw(win)
 
     # builds a circle
-    shape = Circle(Point(50, 50), 20)
-    shape.setOutline("red")
-    shape.setFill("red")
-    shape.draw(win)
+    shape1 = Rectangle(Point(10, 10), Point(30, 30))
+    shape1.setOutline("red")
+    shape1.setFill("red")
+    shape1.draw(win)
 
     # allows the user to click multiple times to move the circle
     for i in range(num_clicks):
         p = win.getMouse()
-        c = shape.getCenter()  # center of circle
+        c = shape1.getCenter()  # center of circle
+        shape2 = shape1.clone()
 
         # move amount is distance from center of circle to the
         # point where the user clicked
         dx = p.getX() - c.getX()
         dy = p.getY() - c.getY()
-        shape.move(dx, dy)
+        shape2.move(dx, dy)
+        shape2.draw(win)
+    instructions.setText("Click Again To Quit")
 
     win.getMouse()
     win.close()
@@ -65,11 +75,66 @@ def rectangle():
     pass
 
 
+window = GraphWin("Rectangles", 500, 500)
+point1 = window.getMouse()
+point1.draw(window)
+point2 = window.getMouse()
+point2.draw(window)
+rec = Rectangle(point1, point2)
+rec.setFill("purple")
+rec.draw(window)
+x1 = point1.getX()
+x2 = point2.getX()
+y1 = point1.getY()
+y2 = point2.getY()
+length = abs(y2 - y1)
+width = abs(x2 - x1)
+perimeter = 2 * (length + width)
+area = length * width
+text = Text(Point(250, 400), "Perimeter: " + str(perimeter))
+text.draw(window)
+text2 = Text(Point(250, 420), "Area: " + str(area))
+text2.draw(window)
+
+window.getMouse()
+window.close()
+
+
+def circle():
+    window_ = GraphWin("Circles", 500, 500)
+    _point1 = window_.getMouse()
+    _point1.draw(window_)
+    _point2 = window_.getMouse()
+    _point2.draw(window_)
+    _x1 = _point1.getX()
+    _x2 = _point2.getX()
+    _y1 = _point1.getY()
+    _y2 = _point2.getY()
+    d = math.sqrt((_x2 - _x1)**2 + (_y2 - _y1)**2)
+    circ = Circle(_point1, d)
+    circ.draw(window_)
+    circ.setFill("blue")
+    window_.getMouse()
+    window_.close()
+
+
+def pi2():
+    acc = 0
+    n = eval(input("number of terms?"))
+    for i in range(n):
+        numerator = 4
+        denominator = 1 + 2 * i
+        fraction = numerator / denominator * ((-1) ** i)
+        acc = acc + fraction
+    print(acc)
+    print(math.pi - acc)
+
+
 def main():
     squares()
-    # rectangle()
-    # circle()
-    # pi2()
+    rectangle()
+    circle()
+    pi2()
 
 
 main()
