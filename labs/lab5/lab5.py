@@ -1,5 +1,5 @@
 """
-Name: Tripp Modzelewski
+Name: TrippModzelewski
 lab5.py
 
 
