@@ -71,6 +71,7 @@ def main():
     po6 = Point(-10, 500)
     line5 = Line(po6, po1)
     line5.draw(win)
+    circle3.draw(win)
 
     # Movement
     for _ in range(200):
@@ -81,7 +82,6 @@ def main():
         line4.move(1, -1)
         line5.move(1, -1)
         time.sleep(.01)
-    circle3.draw(win)
     text.setText("Click anywhere to close...")
 
     win.getMouse()
