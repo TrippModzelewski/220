@@ -11,23 +11,28 @@ from graphics import GraphWin, Text, Entry, Rectangle, Point
 
 
 def code(message, keyword):
+    message2 = message.upper()
+    message3 = message2.replace(' ', '')
+    key2 = keyword.upper()
+    key3 = key2.replace(' ', '')
+
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    if len(keyword) >= len(message):
+    if len(keyword) >= len(message3):
         acc = ''
-        for i in range(len(message)):
-            mi1 = alphabet.find(message[i])
-            ki1 = alphabet.find(keyword[i])
+        for i in range(len(message3)):
+            mi1 = alphabet.find(message3[i])
+            ki1 = alphabet.find(key3[i])
             results = mi1 + ki1
             nu_results = alphabet[results]
             acc = acc + nu_results
         print(acc)
         return acc
-    if len(keyword) < len(message):
-        keyword2 = keyword * 30
+    if len(keyword) < len(message3):
+        key32 = key3 * 30
         acc = ''
-        for i in range(len(message)):
-            mi2 = alphabet.find(message[i])
-            ki2 = alphabet.find(keyword2[i])
+        for i in range(len(message3)):
+            mi2 = alphabet.find(message3[i])
+            ki2 = alphabet.find(key32[i])
             results2 = mi2 + ki2
             new_res = alphabet[results2]
             acc = acc + new_res
@@ -54,13 +59,9 @@ def main():
     win.getMouse()
 
     message = message_entry.getText()
-    message2 = message.upper()
-    message3 = message2.replace(' ', '')
-    key = key_entry.getText()
-    key2 = key.upper()
-    key3 = key2.replace(' ', '')
+    keyword = key_entry.getText()
 
-    acc = code(message3, key3)
+    acc = code(message, keyword)
 
     button.undraw()
     button_text.setText("Resulting message: ")
