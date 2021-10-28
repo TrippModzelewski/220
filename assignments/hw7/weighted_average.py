@@ -8,6 +8,10 @@ Certification of Authenticity:
 I certify that this assignment is entirely my own work
 """
 
+# Sorry it was late, I did not realize it was due on Tuesday
+# and I had 2 tests today, so I could not get it done yesterday.
+# But it's done and it's beautiful. See you tomorrow.
+
 
 def weighted_average(in_file_name, out_file_name):
     infile = open(in_file_name, 'r')
