@@ -7,10 +7,10 @@ Problem: This program creates a visual
 Certification of Authenticity:
 I certify that this assignment is entirely my own work
 """
+import math
 from random import randint
 import time
 import graphics
-import math
 
 
 def get_random(move_amount):
@@ -25,32 +25,29 @@ def get_random_color():
     return color
 
 
-def hit_horizontal(circle):
+def hit_horizontal(circle, win):
     center = circle.getCenter()
     cen_y = center.getY()
-    if cen_y >= 375 or cen_y <= 25:
-        return True
-    else:
-        return False
+    rad = circle.getRadius()
+    height = win.winfo_height()
+    return bool(cen_y >= height - rad or cen_y <= rad)
 
 
-def hit_vertical(circle):
+def hit_vertical(circle, win):
     center = circle.getCenter()
     cen_x = center.getX()
-    if cen_x >= 375 or cen_x <= 25:
-        return True
-    else:
-        return False
+    rad = circle.getRadius()
+    width = win.winfo_width()
+    return bool(cen_x >= width - rad or cen_x <= rad)
 
 
 def did_collide(circle1, circle2):
     cen1 = circle1.getCenter()
     cen2 = circle2.getCenter()
+    rad1 = circle1.getRadius()
+    rad2 = circle2.getRadius()
     center_distance = math.sqrt((cen1.getX() - cen2.getX()) ** 2 + (cen1.getY() - cen2.getY()) ** 2)
-    if center_distance <= 50:
-        return True
-    else:
-        return False
+    return bool(center_distance <= rad1 + rad2)
 
 
 def main():
@@ -63,50 +60,48 @@ def main():
     circle1.setFill(get_random_color())
     circle2.setFill(get_random_color())
     win.setBackground(get_random_color())
-    x = 0
-    dx = get_random(1)
-    dy = get_random(1)
+    xini = 0
+    dx1 = get_random(1)
+    dy1 = get_random(1)
     dx2 = get_random(1)
     dy2 = get_random(1)
-    while x == 0:
-        circle1.move(dx, dy)
+    while xini == 0:
+        circle1.move(dx1, dy1)
         time.sleep(.000000000001)
-        hit_hori = hit_horizontal(circle1)
-        hit_vert = hit_vertical(circle1)
+        hit_hori = hit_horizontal(circle1, win)
+        hit_vert = hit_vertical(circle1, win)
         circle2.move(dx2, dy2)
-        hit_hori2 = hit_horizontal(circle2)
-        hit_vert2 = hit_vertical(circle2)
+        hit_hori2 = hit_horizontal(circle2, win)
+        hit_vert2 = hit_vertical(circle2, win)
         collide = did_collide(circle1, circle2)
         if hit_hori is True:
-            dy = -dy
+            dy1 = -dy1
         elif hit_hori is False:
-            dy = dy
+            pass
         if hit_vert is True:
-            dx = -dx
+            dx1 = -dx1
         elif hit_vert is False:
-            dx = dx
+            pass
 
         if hit_hori2 is True:
             dy2 = -dy2
         elif hit_hori2 is False:
-            dy2 = dy2
+            pass
         if hit_vert2 is True:
             dx2 = -dx2
         elif hit_vert2 is False:
-            dx2 = dx2
+            pass
 
         if collide is True:
-            dx = -dx
-            dy = -dy
+            dx1 = -dx1
+            dy1 = -dy1
             dx2 = -dx2
             dy2 = -dy2
         elif collide is False:
-            dx = dx
-            dy = dy
-            dx2 = dx2
-            dy2 = dy2
+            pass
 
     win.close()
 
 
-main()
+if __name__ == '__main__':
+    main()
