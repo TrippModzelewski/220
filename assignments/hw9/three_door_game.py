@@ -7,18 +7,19 @@ Problem: This program creates a three door game
 Certification of Authenticity:
 I certify that this assignment is entirely my own work
 """
-from button import *
 from random import randint
+from graphics import GraphWin, Point, Rectangle, Text
+from button import Button
 
 
 def main():
     win = GraphWin("Three Door Game", 500, 500)
     win.setCoords(0, 0, 19, 19)
-    door1 = Button(Rectangle(Point(1, 8), Point(6, 12)), Text(Point(3.5, 10), "door 1"))
+    door1 = Button(Rectangle(Point(1, 8), Point(6, 12)), "door 1")
     door1.draw(win)
-    door2 = Button(Rectangle(Point(7, 8), Point(12, 12)), Text(Point(9.5, 10), "door 2"))
+    door2 = Button(Rectangle(Point(7, 8), Point(12, 12)), "door 2")
     door2.draw(win)
-    door3 = Button(Rectangle(Point(13, 8), Point(18, 12)), Text(Point(15.5, 10), "door 3"))
+    door3 = Button(Rectangle(Point(13, 8), Point(18, 12)), "door 3")
     door3.draw(win)
     top_txt = Text(Point(9.5, 17), "I have a secret door")
     top_txt.draw(win)
