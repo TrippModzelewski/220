@@ -27,7 +27,7 @@ class SalesPerson:
         self.name = nu_name
 
     def enter_sale(self, sale):
-        self.sales.append(sale)
+        self.sales.append(float(sale))
 
     def total_sales(self):
         acc = 0
@@ -43,11 +43,12 @@ class SalesPerson:
 
     def compare_to(self, other):
         if self.total_sales() > other.total_sales():
-            return 1
+            return int(1)
         if self.total_sales() < other.total_sales():
-            return -1
+            return int(-1)
         if self.total_sales() == other.total_sales():
-            return 0
+            return int(0)
 
     def __str__(self):
-        return str(bytes(self.employee_id),  self.name,  self.total_sales())
+
+        return str(self.employee_id) + self.name + str(self.total_sales())

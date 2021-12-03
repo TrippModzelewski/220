@@ -21,15 +21,18 @@ class SalesForce:
         data = text.readlines()
         for line in data:
             split = line.split(', ')
-            self.sales_people.append(SalesPerson(split[0], split[1]))
-            sales = split[2].split(' ')
+            nu_addition = SalesPerson(split[0], split[1])
+            self.sales_people.append(nu_addition)
+            trying = split[2].strip("\n")
+            sales = trying.split(' ')
             for sale in sales:
-                SalesPerson.enter_sale(SalesPerson(split[0], split[1]), sale)
+                nu_addition.enter_sale(sale)
 
     def quota_report(self, quota):
         nu_list = []
         for item in self.sales_people:
             nu_list.append([SalesPerson.get_id(item), SalesPerson.get_name(item), SalesPerson.total_sales(item), SalesPerson.met_quota(item, quota)])
+        return nu_list
 
     def top_seller(self):
         space_filler = SalesPerson(-1, "empty")
@@ -38,9 +41,9 @@ class SalesForce:
         for item in self.sales_people:
             if item.total_sales() > lst[0].total_sales():
                 lst = []
-                lst.append(SalesPerson)
+                lst.append(item)
             if item.total_sales() == lst[0].total_sales():
-                lst.append(SalesPerson)
+                lst.append(item)
 
     def individual_sales(self, employee_id):
         for item in self.sales_people:
