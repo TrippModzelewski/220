@@ -13,12 +13,12 @@ class SalesPerson:
     """SalesPerson class encapsulates data for a sales person"""
 
     def __init__(self, employee_id, name):
-        self.id = int(employee_id)
+        self.employee_id = int(employee_id)
         self.name = name
         self.sales = []
 
     def get_id(self):
-        return self.id
+        return self.employee_id
 
     def get_name(self):
         return self.name
@@ -50,4 +50,4 @@ class SalesPerson:
             return 0
 
     def __str__(self):
-        return str(bytes(self.id),  self.name,  self.total_sales())
+        return str(bytes(self.employee_id),  self.name,  self.total_sales())
